@@ -8,7 +8,7 @@ public void add(double first, double second){
 }
 
 public void subtract(double first, double second) {
-	this.result = first - secend;
+	this.result = first - second;
 }
 
 public void div(double first, double second); {
