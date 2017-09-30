@@ -44,7 +44,7 @@ public void multiple(double first, double second) {
 	* метод getResult возвращает значение переменной result.
 	* @return result result.
 	*/
-public double getResult(); {
+public double getResult() {
 	return this.result;
 }
 }
