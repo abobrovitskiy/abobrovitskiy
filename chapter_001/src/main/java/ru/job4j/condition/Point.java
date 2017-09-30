@@ -42,6 +42,6 @@ private int y;
 	* @param b b.
 	*/
 	public boolean is(int a, int b) {
-	return y - b == a * x ? true : false;
+	return y - b == a * x;
 	}
 }
