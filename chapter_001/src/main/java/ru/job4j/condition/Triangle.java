@@ -56,15 +56,12 @@ public double distance(Point left, Point right) {
 *
 * (ab + ac + bc) / 2
 *
-* @param ab расстояние между точками a b
-* @param ac расстояние между точками a c
-* @param bc расстояние между точками b c
 * @return Периметр.
 */
-public double period(double ab, double ac, double bc) {
-    ab = this.distance(this.a, this.b);
-    ac = this.distance(this.a, this.c);
-	bc = this.distance(this.b, this.c);
+public double period() {
+    double ab = this.distance(this.a, this.b);
+    double ac = this.distance(this.a, this.c);
+	double bc = this.distance(this.b, this.c);
 	return (ab + ac + bc) / 2;
 }
 
@@ -84,7 +81,7 @@ public double area() {
     double ab = this.distance(this.a, this.b);
     double ac = this.distance(this.a, this.c);
     double bc = this.distance(this.b, this.c);
-    double p = this.period(ab, ac, bc);
+    double p = this.period();
     if (this.exist(ab, ac, bc)) {
 		rsl = Math.sqrt(p * (p - ab) * (p - ac) * (p - bc));
     }
@@ -99,7 +96,11 @@ public double area() {
 * @param bc Длина от точки b c.
 * @return false.
 */
-private boolean exist(double ab, double ac, double bc) {
-	return (ab + ac > bc);
+public boolean exist(double ab, double ac, double bc) {
+	boolean t = false;
+	if ((ab + ac > bc) & (ab + bc > ac) & (ac + bc > ab)) {
+		t = true;
+	}
+	return t;
 }
 }
