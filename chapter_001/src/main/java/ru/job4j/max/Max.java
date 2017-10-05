@@ -11,12 +11,10 @@ public class Max {
 	* @return max maximum.
 	*/
 	public int max(int first, int second) {
-	int maximum = first > second ? first : second;
-	return maximum;
+	return first > second ? first : second;
 	}
 	public int max(int first, int second, int third) {
-		this.max(first, second);
-		return this.max(second, third);
+		return max(first, max(second. third));
 	}
 
 }
