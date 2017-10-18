@@ -1,5 +1,6 @@
 public class Array {
-int[] a1 = new int[] {1, 2, 3, 4};
+	public int[] mergeInt(int[] a1, int[] a2) {
+	int[] a1 = new int[] {1, 2, 3, 4};
     int[] a2 = new int[] {5, 6, 7, 8};
     int[] a3 = new int[a1.length + a2.length];
     int i = 0, j = 0;
@@ -25,4 +26,6 @@ int[] a1 = new int[] {1, 2, 3, 4};
             j++;
         }
     }
+	return a3;
+}
 }
