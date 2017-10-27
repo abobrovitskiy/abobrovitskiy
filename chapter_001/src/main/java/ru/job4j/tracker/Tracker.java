@@ -6,7 +6,7 @@ import java.util.Random;
 */
 public class Tracker {
 	/** Ietm массив заявок. */
-	private Item[] items = new Item[100];
+	private Item[] items = new Item[3];
 	/** счетчик массива. */
 	private int position = 0;
 	/** генератор id. */
@@ -38,12 +38,20 @@ public class Tracker {
 	* @param item item.
 	*/
 	public void delete(Item item) {
-		for (int index = 0; index != this.position; index++) {
+		int k;
+		int index;
+		for (index = 0; index != this.position; index++) {
 			if (this.items[index].getId().equals(item.getId())) {
 				this.items[index] = null;
 				break;
 			}
 		}
+		for (k = index; k != this.position; k++) {
+			this.items[k] = this.items[k + 1];
+		}
+		Item[] deleteArr = new Item[k - 1];
+		System.arraycopy(items, 0, deleteArr, 0, k - 1);
+
 	}
 	/**
 	* метод findAll выводит все элементы массива.
