@@ -46,12 +46,13 @@ public class Tracker {
 				break;
 			}
 		}
+		/**
 		for (k = index; k != this.position; k++) {
 			this.items[k] = this.items[k + 1];
 		}
 		Item[] deleteArr = new Item[k - 1];
 		System.arraycopy(items, 0, deleteArr, 0, k - 1);
-
+		*/
 	}
 	/**
 	* метод findAll выводит все элементы массива.
@@ -69,15 +70,16 @@ public class Tracker {
 	* @param key key.
 	* @return result элементы массива.
 	*/
-	public Item[] findByName(String key) {
+	public Item findByName(String key) {
 		Item[] result = new Item[this.position];
-		for (int index = 0; index != this.position; index++) {
+		int index;
+		for (index = 0; index != this.position; index++) {
 			if (this.items[index] != null && this.items[index].getName().equals(key)) {
 				result[index] = this.items[index];
 				break;
 			}
 		}
-		return result;
+		return result[index];
 	}
 	/**
 	* метод findById выводит искомый элемент массива.

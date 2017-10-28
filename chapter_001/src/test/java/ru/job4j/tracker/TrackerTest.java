@@ -27,11 +27,67 @@ public class TrackerTest {
 		Tracker tracker = new Tracker();
 		Item item = new Item("test1", "testDescription", 123L);
 		Item item2 = new Item("test2", "testDescription", 124L);
-		//Item item3 = new Item("test3", "testDescription", 125L);
 		tracker.add(item);
 		tracker.add(item2);
 		tracker.delete(item);
-		assertThat(tracker.findAll(), is(item2));
-		//assertEquals(item2, tracker.findByName("item2"));
+		assertThat(tracker.findById(item2.getId()), is(item2));
+	}
+	/**
+	* метод whenUpdateNameThenReturnNewName обновляет данные в заявке.
+	*/
+	@Test
+	public void whenUpdateNameThenReturnNewName() {
+		Tracker tracker = new Tracker();
+		Item previous = new Item("test1", "testDescription", 123L);
+		tracker.add(previous);
+		Item next = new Item("test2", "testDescription2", 1234L);
+		next.setId(previous.getId());
+		tracker.update(next);
+		assertThat(tracker.findById(previous.getId()).getName(), is("test2"));
+	}
+	/**
+	* метод whenfindAllItemsThenGetAllItems ищет все элементы в массиве.
+	*/
+	@Test
+	public void whenfindAllItemsThenGetAllItems() {
+		Tracker tracker = new Tracker();
+		Item item = new Item("test1", "testDescription", 123L);
+		Item item2 = new Item("test2", "testDescription", 124L);
+		Item[] result = new Item[2];
+		tracker.add(item);
+		tracker.add(item2);
+		result[0] = item;
+		result[1] = item2;
+		assertThat(tracker.findAll(), is(result));
+	}
+	/**
+	* метод whenfindByNameThenGetItem ищет элементы в массиве по имени.
+	*/
+	@Test
+	public void whenfindByNameThenGetItem() {
+		Tracker tracker = new Tracker();
+		Item item = new Item("test1", "testDescription", 123L);
+		Item item2 = new Item("test2", "testDescription", 124L);
+		Item[] result = new Item[2];
+		tracker.add(item);
+		tracker.add(item2);
+		result[0] = item;
+		result[1] = item2;
+		assertThat(tracker.findByName("test1"), is(result[0]));
+	}
+	/**
+	* метод whenfindByIdThenGetItemById ищет элементы в массиве по Id.
+	*/
+	@Test
+	public void whenfindByIdThenGetItemById() {
+		Tracker tracker = new Tracker();
+		Item item = new Item("test1", "testDescription", 123L);
+		Item item2 = new Item("test2", "testDescription", 124L);
+		Item[] result = new Item[2];
+		tracker.add(item);
+		tracker.add(item2);
+		result[0] = item;
+		result[1] = item2;
+		assertThat(tracker.findById(item.getId()), is(item));
 	}
 }
