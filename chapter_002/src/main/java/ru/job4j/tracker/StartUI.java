@@ -6,16 +6,22 @@ import java.io.InputStreamReader;
 * класс StartUI реализует интерфейс программы.
 * @author abobrovitskiy.
 */
+
+
 public class StartUI {
-	public static void main(String[] args) throws IOException {
-		boolean isExit = false;
-		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+	private Input input;
+	public Tracker tracker;
+	public StartUI(Input input, Tracker tracker) {
+		this.input = input;
+		this.tracker = tracker;
+	}
+	public void init() {
+	boolean isExit = false;
 		Tracker tracker = new Tracker();
-		ConsoleInput input = new ConsoleInput();
 		while (!isExit) {
 			System.out.println("0. Add new Item");
 			System.out.println("1. Show all items");
-			System.out.println("2. Edit item");
+			System.out.println("2. Update item");
 			System.out.println("3. Delete item");
 			System.out.println("4. Find item by Id");
 			System.out.println("5. Find items by name");
@@ -58,12 +64,14 @@ public class StartUI {
 				System.out.println(tracker.findByName(name));
 			}
 			if (choice == 6) {
-				System.out.println("Exiting...");
+				System.out.print("Exiting...");
 				break;
 			}
-
 		}
-
-
+}
+	public static void main(String[] args) throws IOException {
+		Tracker tracker = new Tracker();
+		new StartUI(new StubInput(new String[] {"0", "test name", "desc", "123", "6"}), tracker).init();
+		//new StartUI(new ConsoleInput(), tracker).init();
 	}
 }

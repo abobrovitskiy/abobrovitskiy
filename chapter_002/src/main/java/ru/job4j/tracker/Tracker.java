@@ -5,7 +5,7 @@ import java.util.Random;
 * @author abobrovitskiy.
 */
 public class Tracker {
-	/** Ietm массив заявок. */
+	/** Item массив заявок. */
 	private Item[] items = new Item[3];
 	/** счетчик массива. */
 	private int position = 0;
