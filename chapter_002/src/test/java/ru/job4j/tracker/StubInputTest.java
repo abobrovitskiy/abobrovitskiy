@@ -18,7 +18,7 @@ public class StubInputTest {
 	public void whenUpdateThenTrackerHasUpdatedValue() {
 		Tracker tracker = new Tracker();
 		Item item = tracker.add(new Item("test1", "testDescription", 123L));
-		Input input = new StubInput(new String[]{"4", "test", "desc", "123", "6"});
+		Input input = new StubInput(new String[]{"2", "test", "desc", "123", "6"});
 		new StartUI(input, tracker).init();
 		assertThat(tracker.findById(item.getId()).getName(), is("test"));
 	}
