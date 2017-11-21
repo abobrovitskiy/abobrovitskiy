@@ -11,67 +11,87 @@ import java.io.InputStreamReader;
 public class StartUI {
 	private Input input;
 	public Tracker tracker;
+	private static final int ADD = 0;
+	private static final int ALL = 1;
+	private static final int UPD = 2;
+	private static final int DEL = 3;
+	private static final int FID = 4;
+	private static final int FNM = 5;
+	private static final int EXIT = 6;
 	public StartUI(Input input, Tracker tracker) {
 		this.input = input;
 		this.tracker = tracker;
+	}
+	public void showMenu() {
+		System.out.println("0. Add new Item");
+		System.out.println("1. Show all items");
+		System.out.println("2. Update item");
+		System.out.println("3. Delete item");
+		System.out.println("4. Find item by Id");
+		System.out.println("5. Find items by name");
+		System.out.println("6. Exit Program");
+	}
+	public void addItem () {
+		String name = input.ask("Enter name: ");
+		String desc = input.ask("Enter description: ");
+		String creat = input.ask("Enter create: ");
+		long create = Long.parseLong(creat);
+		Item item = new Item(name, desc, create);
+		tracker.add(item);
+	}
+	public void updItem () {
+		String name = input.ask("Enter new name: ");
+		String desc = input.ask("Enter new description: ");
+		String creat = input.ask("Enter new create: ");
+		long create = Long.parseLong(creat);
+		Item item = new Item(name, desc, create);
+		tracker.update(item);
+		System.out.println("Updated");
+	}
+	public void delItem() {
+		String name = input.ask("Enter name: ");
+		tracker.delete(tracker.findById((tracker.findByName(name).getId())));
+		System.out.println("Deleted");
 	}
 	public void init() {
 	boolean isExit = false;
 		Tracker tracker = new Tracker();
 		while (!isExit) {
-			System.out.println("0. Add new Item");
-			System.out.println("1. Show all items");
-			System.out.println("2. Update item");
-			System.out.println("3. Delete item");
-			System.out.println("4. Find item by Id");
-			System.out.println("5. Find items by name");
-			System.out.println("6. Exit Program");
+			this.showMenu();
 			String line = input.ask("Select: ");
 			int choice = Integer.parseInt(line);
-			if (choice == 0) {
-				String name = input.ask("Enter name: ");
-				String desc = input.ask("Enter description: ");
-				String creat = input.ask("Enter create: ");
-				long create = Long.parseLong(creat);
-				Item item = new Item(name, desc, create);
-				tracker.add(item);
+			if (ADD == choice) {
+				this.addItem();
 			}
-			if (choice == 1) {
+			if (ALL == choice) {
 				for (Item item : tracker.findAll()) {
 					System.out.println(item);
 				}
 			}
-			if (choice == 2) {
-				String name = input.ask("Enter name: ");
-				String desc = input.ask("Enter description: ");
-				String creat = input.ask("Enter create: ");
-				long create = Long.parseLong(creat);
-				Item item = new Item(name, desc, create);
-				tracker.update(item);
-				System.out.println("Updated");
+			if (UPD == choice) {
+				this.updItem();
 			}
-			if (choice == 3) {
-				String name = input.ask("Enter name: ");
-				tracker.delete(tracker.findById((tracker.findByName(name).getId())));
-				System.out.println("Deleted");
+			if (DEL == choice) {
+				this.delItem();
 			}
-			if (choice == 4) {
+			if (FID == choice) {
 				String id = input.ask("Enter id: ");
 				System.out.println(tracker.findById(id));
 			}
-			if (choice == 5) {
+			if (FNM == choice) {
 				String name = input.ask("Enter name: ");
 				System.out.println(tracker.findByName(name));
 			}
-			if (choice == 6) {
+			if (EXIT == choice) {
 				System.out.print("Exiting...");
+				isExit = true;
 				break;
 			}
 		}
 }
 	public static void main(String[] args) throws IOException {
 		Tracker tracker = new Tracker();
-		new StartUI(new StubInput(new String[] {"0", "test name", "desc", "123", "6"}), tracker).init();
-		//new StartUI(new ConsoleInput(), tracker).init();
+		//new StartUI(new StubInput(new String[] {"0", "test name", "desc", "123", "6"}), tracker).init();
+		new StartUI(new ConsoleInput(), tracker).init();
 	}
 }

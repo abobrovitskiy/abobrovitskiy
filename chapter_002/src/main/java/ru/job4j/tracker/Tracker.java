@@ -6,7 +6,7 @@ import java.util.Random;
 */
 public class Tracker {
 	/** Item массив заявок. */
-	private Item[] items = new Item[3];
+	private Item[] items = new Item[100];
 	/** счетчик массива. */
 	private int position = 0;
 	/** генератор id. */
@@ -19,6 +19,7 @@ public class Tracker {
 	public Item add(Item item) {
 		item.setId(this.generateId());
 		this.items[position++] = item;
+		System.out.println("Item id: " + item.getId() + " Item name: " + item.getName());
 		return item;
 	}
 	/**
@@ -91,6 +92,7 @@ public class Tracker {
 		for (Item item : items) {
 			if (item != null && item.getId().equals(id)) {
 				result = item;
+				System.out.println("Done!");
 				break;
 			}
 		}
