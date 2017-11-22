@@ -4,15 +4,7 @@ package ru.job4j.shape;
 * @author abobrovitskiy.
 */
 public class Paint {
-	Shape shape;
-	/**
-	* сеттер для Shape.
-	* @param shape shape.
-	*/
-	public void setShape(Shape shape) {
-		this.shape = shape;
-	}
-	public String draw() {
-		return shape.pic();
+	public void draw(Shape shape) {
+		System.out.println(shape.pic());
 	}
 }

@@ -1,5 +1,7 @@
 package ru.job4j.shape;
 import org.junit.Test;
+import java.io.PrintStream;
+import java.io.ByteArrayOutputStream;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 /**
@@ -11,21 +13,42 @@ public class PaintTest {
 	 */
 	@Test
 	public void whenNewTriangleThenPaintTriangle() {
-		Paint paint = new Paint();
-		paint.setShape(new Triangle());
-		String result = paint.draw();
+		Triangle triangle = new Triangle();
 		String expected = String.format("   ^\r\n  ^^^\r\n ^^^^^\r\n^^^^^^^");
-		assertThat(result, is(expected));
+		assertThat(triangle.pic(), is(expected));
 	}
 	/**
 	 * метод whenNewSquareThenPaintSquare отображает квадрат.
 	 */
 	@Test
 	public void whenNewSquareThenPaintSquare() {
-		Paint paint = new Paint();
-		paint.setShape(new Square());
-		String result = paint.draw();
+		Square square = new Square();
 		String expected = String.format("####\r\n#  #\r\n####");
-		assertThat(result, is(expected));
+		assertThat(square.pic(), is(expected));
 	}
+
+	/**
+	 * метод whenDrawSquare тестирует метод Paint.
+	 */
+    @Test
+    public void whenDrawSquare() {
+        PrintStream stdout = System.out;
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(out));
+        new Paint().draw(new Square());
+        assertThat(
+                new String(out.toByteArray()),
+                is(
+                        new StringBuilder()
+								.append("####")
+								.append(System.lineSeparator())
+								.append("#  #")
+								.append(System.lineSeparator())
+								.append("####")
+								.append(System.lineSeparator())
+                                .toString()
+                )
+        );
+        System.setOut(stdout);
+    }
 }
