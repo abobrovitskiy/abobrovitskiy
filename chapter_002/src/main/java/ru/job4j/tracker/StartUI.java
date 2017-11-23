@@ -18,6 +18,7 @@ public class StartUI {
 	private static final int FID = 4;
 	private static final int FNM = 5;
 	private static final int EXIT = 6;
+	private boolean isExit = false;
 	public StartUI(Input input, Tracker tracker) {
 		this.input = input;
 		this.tracker = tracker;
@@ -40,11 +41,13 @@ public class StartUI {
 		tracker.add(item);
 	}
 	public void updItem () {
+		String id = input.ask("Enter item id: ");
 		String name = input.ask("Enter new name: ");
 		String desc = input.ask("Enter new description: ");
 		String creat = input.ask("Enter new create: ");
 		long create = Long.parseLong(creat);
 		Item item = new Item(name, desc, create);
+		item.setId(id);
 		tracker.update(item);
 		System.out.println("Updated");
 	}
@@ -53,9 +56,20 @@ public class StartUI {
 		tracker.delete(tracker.findById((tracker.findByName(name).getId())));
 		System.out.println("Deleted");
 	}
+	public void findById() {
+		String id = input.ask("Enter id: ");
+		System.out.println(tracker.findById(id));
+	}
+	public void showAll() {
+		for (Item item : tracker.findAll()) {
+			System.out.println(item);
+		}
+	}
+	public void findByName() {
+		String name = input.ask("Enter name: ");
+		System.out.println(tracker.findByName(name));
+	}
 	public void init() {
-	boolean isExit = false;
-		Tracker tracker = new Tracker();
 		while (!isExit) {
 			this.showMenu();
 			String line = input.ask("Select: ");
@@ -64,9 +78,7 @@ public class StartUI {
 				this.addItem();
 			}
 			if (ALL == choice) {
-				for (Item item : tracker.findAll()) {
-					System.out.println(item);
-				}
+				this.showAll();
 			}
 			if (UPD == choice) {
 				this.updItem();
@@ -75,12 +87,10 @@ public class StartUI {
 				this.delItem();
 			}
 			if (FID == choice) {
-				String id = input.ask("Enter id: ");
-				System.out.println(tracker.findById(id));
+				this.findById();
 			}
 			if (FNM == choice) {
-				String name = input.ask("Enter name: ");
-				System.out.println(tracker.findByName(name));
+				this.findByName();
 			}
 			if (EXIT == choice) {
 				System.out.print("Exiting...");
@@ -91,7 +101,6 @@ public class StartUI {
 }
 	public static void main(String[] args) throws IOException {
 		Tracker tracker = new Tracker();
-		//new StartUI(new StubInput(new String[] {"0", "test name", "desc", "123", "6"}), tracker).init();
 		new StartUI(new ConsoleInput(), tracker).init();
 	}
 }

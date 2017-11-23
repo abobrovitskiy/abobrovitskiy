@@ -30,6 +30,7 @@ public class Tracker {
 		for (int index = 0; index != this.position; index++) {
 			if (items[index].getId().equals(item.getId())) {
 				this.items[index] = item;
+				System.out.println("Done!");
 				break;
 			}
 		}
@@ -92,7 +93,7 @@ public class Tracker {
 		for (Item item : items) {
 			if (item != null && item.getId().equals(id)) {
 				result = item;
-				System.out.println("Done!");
+				System.out.println("Find by Id: Done!");
 				break;
 			}
 		}
