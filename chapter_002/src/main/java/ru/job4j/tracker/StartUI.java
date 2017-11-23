@@ -6,8 +6,6 @@ import java.io.InputStreamReader;
 * класс StartUI реализует интерфейс программы.
 * @author abobrovitskiy.
 */
-
-
 public class StartUI {
 	private Input input;
 	public Tracker tracker;
@@ -32,7 +30,7 @@ public class StartUI {
 		System.out.println("5. Find items by name");
 		System.out.println("6. Exit Program");
 	}
-	public void addItem () {
+	public void addItem() {
 		String name = input.ask("Enter name: ");
 		String desc = input.ask("Enter description: ");
 		String creat = input.ask("Enter create: ");
@@ -40,7 +38,7 @@ public class StartUI {
 		Item item = new Item(name, desc, create);
 		tracker.add(item);
 	}
-	public void updItem () {
+	public void updItem() {
 		String id = input.ask("Enter item id: ");
 		String name = input.ask("Enter new name: ");
 		String desc = input.ask("Enter new description: ");
