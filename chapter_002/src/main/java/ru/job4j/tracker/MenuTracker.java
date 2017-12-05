@@ -3,7 +3,7 @@ package ru.job4j.tracker;
 public class MenuTracker {
 	private Input input;
 	private Tracker tracker;
-	private UserAction[] actions = new UserAction[6];
+	public UserAction[] actions = new UserAction[6];
 	public MenuTracker(Input input, Tracker tracker) {
 		this.input = input;
 		this.tracker = tracker;

@@ -6,8 +6,10 @@ import java.io.IOException;
 * @author abobrovitskiy.
 */
 public class StartUI {
+	private int[] ranges = new int [] {0, 1, 2, 3, 4, 5};
 	private Input input;
 	public Tracker tracker;
+
 	public StartUI(Input input, Tracker tracker) {
 		this.input = input;
 		this.tracker = tracker;
@@ -17,13 +19,13 @@ public class StartUI {
 		menu.fillActions();
 		do {
 			menu.show();
-			int key = Integer.valueOf(input.ask("Select: "));
-			menu.select(key);
+			menu.select(input.ask("select:", ranges));
+			menu.select(input.ask("select:", );
 		} while(! "y".equals(this.input.ask("Exit? y")));
 }
 	public static void main(String[] args) throws IOException {
 		Tracker tracker = new Tracker();
-		Input input = new ConsoleInput();
+		Input input = new ValidateInput();
 		new StartUI(input, tracker).init();
 	}
 }
