@@ -1,4 +1,4 @@
-package ru.job4j.Collections;
+package ru.job4j.Collections.Speed;
 import org.junit.Test;
 
 import java.util.*;
@@ -38,7 +38,7 @@ public class SpeedTest {
         Collection<String> tSet = new TreeSet<>();
         speed.add(tSet, 100);
         long resulttSet = speed.delete(tSet, 100);
-        assert(resultlList > resultaList);
-        assert(resulttSet > resultaList);
+        assert(resulttSet > resultlList);
+        assert(resultaList > resultlList);
     }
 }

@@ -1,4 +1,4 @@
-package ru.job4j.Collections;
+package ru.job4j.Collections.Speed;
 
 import java.util.*;
 import static java.lang.System.nanoTime;
@@ -37,18 +37,18 @@ public class Speed {
     public static void main(String[] args) {
         Speed speed = new Speed();
         Collection<String> lList = new LinkedList<>();
-        long resultlList = speed.add(lList, 100000);
+        long resultlList = speed.add(lList, 10000);
         Collection<String> aList = new ArrayList<>();
-        long resultaList = speed.add(aList, 100000);
+        long resultaList = speed.add(aList, 10000);
         Collection<String> tSet = new TreeSet<>();
-        long resulttSet = speed.add(tSet, 100000);
+        long resulttSet = speed.add(tSet, 10000);
         System.out.println(String.format("%s - %s", lList.getClass(), resultlList));
         System.out.println(String.format("%s - %s", aList.getClass(), resultaList));
         System.out.println(String.format("%s - %s", tSet.getClass(), resulttSet));
 
-        resultlList = speed.delete(lList, 1000);
-        resultaList = speed.delete(aList, 1000);
-        resulttSet = speed.delete(tSet, 1000);
+        resultlList = speed.delete(lList, 10000);
+        resultaList = speed.delete(aList, 10000);
+        resulttSet = speed.delete(tSet, 10000);
         System.out.println(String.format("%s - %s", lList.getClass(), resultlList));
         System.out.println(String.format("%s - %s", aList.getClass(), resultaList));
         System.out.println(String.format("%s - %s", tSet.getClass(), resulttSet));
