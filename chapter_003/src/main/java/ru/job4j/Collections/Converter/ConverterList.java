@@ -60,4 +60,19 @@ public class ConverterList {
         return ints;
 
     }
+
+    /**
+     * метод convert объединяет элементы из разных списков в один список.
+     * @param list входной список массивов.
+     * @return generalList.
+     */
+    public List<Integer> convert(List<int[]> list) {
+        List<Integer> generalList = new ArrayList<>();
+        for (int[] ints: list) {
+            for (int i : ints) {
+                generalList.add(i);
+            }
+        }
+        return generalList;
+    }
 }

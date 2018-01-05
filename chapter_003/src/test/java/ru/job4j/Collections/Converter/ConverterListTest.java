@@ -37,4 +37,18 @@ public class ConverterListTest {
 
         assertThat(result, is(expected));
     }
+    @Test
+    /**
+     * метод whenInListOfArraysThenOutList тестирует метод convert.
+     */
+    public void whenInListOfArraysThenOutList() {
+        ConverterList convertList = new ConverterList();
+        List<int[]> list = new ArrayList<>();
+        list.add(new int[]{1, 2, 3});
+        list.add(new int[]{4, 5, 6, 7});
+        List<Integer> result = convertList.convert(list);
+        List<Integer> expected = new ArrayList<>(
+                Arrays.asList(new Integer[]{1, 2, 3, 4, 5, 6, 7}));
+        assertThat(result, is(expected));
+    }
 }
